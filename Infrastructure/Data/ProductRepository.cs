@@ -13,7 +13,7 @@ namespace Infrastructure.Data
             _context = context;
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductAsync()
+        public async Task<IReadOnlyList<Product>> GetProductsAsync()
         {
             return await  _context.Products
             .Include(p => p.ProductType)
