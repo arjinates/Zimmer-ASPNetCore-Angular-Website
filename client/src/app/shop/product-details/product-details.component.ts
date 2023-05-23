@@ -13,7 +13,9 @@ export class ProductDetailsComponent implements OnInit{
   product?: Product;
 
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute,
-    private bcService: BreadcrumbService) {}
+    private bcService: BreadcrumbService) {
+      this.bcService.set('@productDetails', ' ')
+    }
 
   ngOnInit(): void {
     this.loadProduct();
@@ -24,7 +26,8 @@ export class ProductDetailsComponent implements OnInit{
     if (id) this.shopService.getProduct(+id).subscribe({
       next: product=> {
         this.product = product;
-        this.bcService.set('@productDetails', product.name)},
+        this.bcService.set('@productDetails', product.name)
+      },
       error: error=> console.log(error)
     });
   }
