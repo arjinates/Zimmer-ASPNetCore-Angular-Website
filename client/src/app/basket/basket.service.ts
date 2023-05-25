@@ -71,7 +71,7 @@ export class BasketService {
   }
 
   private addOrUpdateItem(items: BasketItem[], itemToAdd: BasketItem, quantity: number): BasketItem[] {
-    this.isItemsEmpty(items);
+    if (!items) items = [];
     const item = items.find(x => x.id === itemToAdd.id);
     if (item) {item.quantity += quantity;}
     else{
@@ -113,6 +113,5 @@ export class BasketService {
 
   private isItemsEmpty(items: BasketItem[]) {
     if (!items) items = [];
-    return items;
   }
 }
