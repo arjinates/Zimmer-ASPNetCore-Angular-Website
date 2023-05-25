@@ -51,7 +51,7 @@ export class BasketService {
     if (!basket) return;
     const item = basket.items.find(x => x.id === id);
     if (item) {
-      item.quantity -= 1;
+      item.quantity -= quantity;
       if (item.quantity === 0) {
         basket.items = basket.items.filter(x => x.id !== id)
       }
