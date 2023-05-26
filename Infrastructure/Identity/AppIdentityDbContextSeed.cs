@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Identity
 {
-    public class AddIdentityDbContextSeed
+    public class AppIdentityDbContextSeed
     {
      public static async Task SeedUserAsync(UserManager<AppUser> userManager)
      {
@@ -25,7 +25,7 @@ namespace Infrastructure.Identity
                 }
             };
             
-            await userManager.CreateAsync(user, "Pa$$w0rd07");
+            await userManager.CreateAsync(user, "Pa$$w0rd0");
         }
      }
     }
