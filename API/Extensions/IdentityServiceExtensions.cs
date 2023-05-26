@@ -24,6 +24,12 @@ namespace API.Extensions
             services.AddAuthentication();
             services.AddAuthorization();
 
+            services.Configure<IdentityOptions>(opt => 
+            {
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                opt.Lockout.MaxFailedAccessAttempts = 5;
+            });
+
             return services;
         }       
     }
