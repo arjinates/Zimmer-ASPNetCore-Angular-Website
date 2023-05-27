@@ -2,6 +2,7 @@ using System.Security.Claims;
 using API.Dtos;
 using API.Errors;
 using API.Extensions;
+using AutoMapper;
 using Core.Entities.Identity;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -15,9 +16,12 @@ namespace API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService)   
+        private readonly IMapper _mapper;
+
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, IMapper mapper)   
         {
             _tokenService = tokenService;
+            _mapper = mapper;
             _signInManager = signInManager;
             _userManager = userManager;
         }
@@ -41,6 +45,15 @@ namespace API.Controllers
         {
             return await _userManager.FindByEmailAsync(email) != null;
         }
+
+        [Authorize]
+        [HttpGet("address")]
+        public async Task<ActionResult<AddressDto>> GetUserAddress()
+        {
+           var user = await _userManager.FindUserByClaimsPrincipleWithAddress(User);
+           return _mapper.Map<Address, AddressDto>(user.Address);
+        }
+
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
