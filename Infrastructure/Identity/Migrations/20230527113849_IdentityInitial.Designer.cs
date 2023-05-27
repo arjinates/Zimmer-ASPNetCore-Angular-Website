@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Identity.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20230526111544_IdentityInitial")]
+    [Migration("20230527113849_IdentityInitial")]
     partial class IdentityInitial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Infrastructure.Identity.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
 
-            modelBuilder.Entity("Core.Entities.Identity.Adress", b =>
+            modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace Infrastructure.Identity.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Adress");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Core.Entities.Identity.AppUser", b =>
@@ -68,8 +68,8 @@ namespace Infrastructure.Identity.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DisplayName")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -251,11 +251,11 @@ namespace Infrastructure.Identity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Entities.Identity.Adress", b =>
+            modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "AppUser")
-                        .WithOne("Adress")
-                        .HasForeignKey("Core.Entities.Identity.Adress", "AppUserId")
+                        .WithOne("Address")
+                        .HasForeignKey("Core.Entities.Identity.Address", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -315,7 +315,7 @@ namespace Infrastructure.Identity.Migrations
 
             modelBuilder.Entity("Core.Entities.Identity.AppUser", b =>
                 {
-                    b.Navigation("Adress");
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }
