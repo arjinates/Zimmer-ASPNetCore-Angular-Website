@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,12 @@ export class LoginComponent {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   }) 
+
+  constructor(private acountService: AccountService) {}
   
   onSubmit() {
-    console.log(this.loginForm.value);
+    this.acountService.login(this.loginForm.value).subscribe({
+      next: user => console.log(user)
+    })
   }
 }
