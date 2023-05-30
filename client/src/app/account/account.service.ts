@@ -13,11 +13,11 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private Http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
 login(values: any){
-  return this.Http.post<User>(this.baseUrl + 'account/login', values).pipe(
+  return this.http.post<User>(this.baseUrl + 'account/login', values).pipe(
     map(user => {
       localStorage.setItem('token', user.token);
       this.currentUserSource.next(user);
@@ -26,7 +26,7 @@ login(values: any){
   }
 
   register(values: any) {
-    return this.Http.post<User>(this.baseUrl + 'account/register', values).pipe(
+    return this.http.post<User>(this.baseUrl + 'account/register', values).pipe(
       map(user => {
         localStorage.setItem('token', user.token);
         this.currentUserSource.next(user);
@@ -41,6 +41,6 @@ login(values: any){
   }
 
   checkEmailExists(email: string) {
-    return this.Http.get<boolean>(this.baseUrl + 'account/emailExists?email+' + email);
+    return this.http.get<boolean>(this.baseUrl + 'account/emailExists?email+' + email);
   }
 }
