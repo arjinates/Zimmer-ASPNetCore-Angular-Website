@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../shared/Models/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,15 +15,28 @@ export class AccountService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  loadCurrentUser(token: String) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`)
 
-login(values: any){
-  return this.http.post<User>(this.baseUrl + 'account/login', values).pipe(
-    map(user => {
-      localStorage.setItem('token', user.token);
-      this.currentUserSource.next(user);
-    })
-  )
+    return this.http.get<User>(this.baseUrl + 'account', {headers}).pipe(
+      map(user => {
+        localStorage.setItem('token', user.token);
+        this.currentUserSource.next(user);
+        }
+      )
+    )
   }
+
+
+  login(values: any){
+    return this.http.post<User>(this.baseUrl + 'account/login', values).pipe(
+      map(user => {
+        localStorage.setItem('token', user.token);
+        this.currentUserSource.next(user);
+      })
+   )
+    }
 
   register(values: any) {
     return this.http.post<User>(this.baseUrl + 'account/register', values).pipe(
