@@ -8,14 +8,14 @@ namespace Core.OrderAggregate
         {
         }
 
-        public OrderItem(Product itemOrdered, decimal price, int quantity)
+        public OrderItem(ProducItemOrdered itemOrdered, decimal price, int quantity)
         {
             ItemOrdered = itemOrdered;
             Price = price;
             Quantity = quantity;
         }
 
-        public Product ItemOrdered { get; set; }
+        public ProducItemOrdered ItemOrdered { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
     }
