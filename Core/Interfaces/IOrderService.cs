@@ -1,4 +1,4 @@
-using Core.OrderAggregate;
+using Core.Entities.OrderAggregate;
 
 namespace Core.Interfaces
 {

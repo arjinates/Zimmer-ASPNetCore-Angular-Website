@@ -1,6 +1,4 @@
-using Core.Entities;
-
-namespace Core.OrderAggregate
+namespace Core.Entities.OrderAggregate
 {
     public class OrderItem : BaseEntity
     {
@@ -8,14 +6,14 @@ namespace Core.OrderAggregate
         {
         }
 
-        public OrderItem(ProducItemOrdered itemOrdered, decimal price, int quantity)
+        public OrderItem(ProductItemOrdered itemOrdered, decimal price, int quantity)
         {
             ItemOrdered = itemOrdered;
             Price = price;
             Quantity = quantity;
         }
 
-        public ProducItemOrdered ItemOrdered { get; set; }
+        public ProductItemOrdered ItemOrdered { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
     }
