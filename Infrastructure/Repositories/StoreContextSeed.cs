@@ -2,7 +2,7 @@ using System.Text.Json;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Repositories
 {
     public class StoreContextSeed
     {
