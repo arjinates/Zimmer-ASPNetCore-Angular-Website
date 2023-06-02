@@ -1,5 +1,3 @@
-using Core.Entities;
-
 namespace Core.Entities.OrderAggregate
 {
     public class Order : BaseEntity
