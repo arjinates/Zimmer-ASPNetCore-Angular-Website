@@ -39,13 +39,6 @@ export class BasketService {
     return this.basketSource.value;
   }
 
-  addItemToBasket(item: Product | BasketItem, quantity = 1) {
-    if (this.isProduct(item)) item = this.mapProductItemToBasketItem(item);
-    const basket = this.getCurrentBasketValue() ?? this.createBasket(); 
-    basket.items = this.addOrUpdateItem(basket.items, item, quantity);
-    this.setBasket(basket);
-  }
-
   removeItemFromBasket(id: number, quantity = 1) {
     const basket = this.getCurrentBasketValue();
     if (!basket) return;
@@ -70,6 +63,13 @@ export class BasketService {
     })
   }
 
+  addItemToBasket(item: Product | BasketItem, quantity = 1) {
+    if (this.isProduct(item)) item = this.mapProductItemToBasketItem(item);
+    const basket = this.getCurrentBasketValue() ?? this.createBasket(); 
+    basket.items = this.addOrUpdateItem(basket.items, item, quantity);
+    this.setBasket(basket);
+  }
+  
   private addOrUpdateItem(items: BasketItem[], itemToAdd: BasketItem, quantity: number): BasketItem[] {
     if (!items) items = [];
     const item = items.find(x => x.id === itemToAdd.id);
@@ -80,7 +80,7 @@ export class BasketService {
     }
     return items;
   }
-  createBasket(): Basket {
+  private createBasket(): Basket {
     const basket = new Basket();
     localStorage.setItem('basket_id', basket.id);
     return basket;
