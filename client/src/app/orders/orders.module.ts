@@ -5,10 +5,9 @@ import { OrdersRoutingModule } from './orders-routing.module';
 import { OrderDetailedComponent } from '../order-detailed/order-detailed.component';
 
 
-
 @NgModule({
   declarations: [
-    OrdersComponent,
+    OrdersComponent, 
     OrderDetailedComponent
   ],
   imports: [
