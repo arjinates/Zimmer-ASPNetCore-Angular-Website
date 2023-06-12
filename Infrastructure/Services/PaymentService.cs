@@ -87,7 +87,6 @@ namespace Infrastructure.Services
 
             return order;
         }
-
         public async Task<Order> UpdateOrderPaymentSucceeded(string PaymentIntentId)
         {
             var spec = new OrderByPaymentIntentIdSpecification(PaymentIntentId);
