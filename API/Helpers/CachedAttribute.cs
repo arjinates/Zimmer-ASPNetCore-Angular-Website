@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace API.Helpers
 {
-    public class CachedAtribute : Attribute, IAsyncActionFilter
+    public class CachedAttribute : Attribute, IAsyncActionFilter
     {
         private readonly int _timeToLiveSeconds;
-        public CachedAtribute(int timeToLiveSeconds)
+        public CachedAttribute(int timeToLiveSeconds)
         {
             _timeToLiveSeconds = timeToLiveSeconds;
         }
