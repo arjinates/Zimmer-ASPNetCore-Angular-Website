@@ -94,7 +94,7 @@ namespace Infrastructure.Services
 
             if (order == null) return null;
 
-            order.Status = OrderStatus.PaymentRecieved;
+            order.Status = OrderStatus.PaymentReceived;
             await _unitOfWork.Complete();
             
             return order;
