@@ -6,12 +6,13 @@ import { Brand } from '../shared/Models/brand';
 import { Type } from '../shared/Models/type';
 import { ShopParams } from '../shared/Models/shopParams';
 import { Observable, map, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   products: Product[] = [];
   brands: Brand[] = [];
   types: Type[] = [];
